@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Contact — Niruntara Preschool</title>
+  <link rel="stylesheet" href="static/assets/styles.css"/>
+  <style>
+    /* Logo Styling (same as home) */
+    .brand-logo {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      border: 3px solid gold;
+      background-color: white;
+      transition: transform 0.3s ease;
+    }
+    .brand-logo:hover {
+      transform: scale(1.05);
+    }
+    .brand-text h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: white;
+    }
+    .brand-text p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #fff7e6;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* WhatsApp Chatbot Styles */
+    .chat-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+    .chat-icon img {
+      width: 35px;
+      height: 35px;
+    }
+    .chatbox {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 300px;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 999;
+    }
+    .chat-header {
+      background-color: #075E54;
+      color: white;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .chat-header img {
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+    }
+    .chat-body {
+      background-color: #e5ddd5;
+      padding: 10px;
+      height: 200px;
+      overflow-y: auto;
+    }
+    .message {
+      background-color: white;
+      padding: 8px;
+      border-radius: 8px;
+      margin-bottom: 5px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+    .message.user {
+      background-color: #dcf8c6;
+      margin-left: auto;
+    }
+    .chat-footer {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+    .chat-footer input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      outline: none;
+    }
+    .chat-footer button {
+      background-color: #25D366;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<!-- header -->
+<header>
+  <div class="topbar">
+    <!-- Logo + School Name -->
+    <a class="brand" href="index.html">
+      <img src="static/images/logo.jpg" alt="Niruntara Preschool Logo" class="brand-logo">
+      <div class="brand-text">
+        <h1>Niruntara Preschool</h1>
+        <p>Where Curiosity Meets Creativity</p>
+      </div>
+    </a>
+
+    <!-- Menu Button -->
+    <button class="menu-btn" aria-label="menu">☰</button>
+
+    <!-- Navigation -->
+    <nav>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <!-- <li><a href="gallery.html">Gallery</a></li> -->
+        <li><a href="parents.html">Parent Resources</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Main Contact Section -->
+<main class="container">
+  <section class="section">
+    <h2>Contact Us</h2>
+    <p>We’d love to hear from you! Use the chat in the corner or reach us at:</p>
+    <p><b>Address:</b> Opp Medicover Balaji Hospital, Behind Bajaj Autoshowroom, Kandi, Sangareddy</p>
+    <p><b>Phone:</b> 9985827632</p>
+    <p><b>Email:</b> info@niruntarapreschool.com</p>
+  </section>
+</main>
+
+<!-- footer -->
+<footer>
+  <div class="footer-inner">
+    <div><b>Niruntara Preschool</b> · Opp Medicover Balaji Hospital, Behind Bajaj Autoshowroom, Kandi, Sangareddy · 9985827632</div>
+    <div class="small">© 2025 Niruntara Preschool · All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- WhatsApp Chat -->
+<div class="chat-icon" onclick="toggleChat()">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Chat">
+</div>
+
+<div class="chatbox" id="chatbox">
+  <div class="chat-header">
+    <img src="static/images/logo.jpg" alt="Owner">
+    <span>Niruntara Preschool</span>
+  </div>
+  <div class="chat-body" id="chat-body">
+    <div class="message">Hello! How can we help you today?</div>
+  </div>
+  <div class="chat-footer">
+    <input type="text" id="user-input" placeholder="Type a message...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+  const chatbox = document.getElementById('chatbox');
+  const chatBody = document.getElementById('chat-body');
+  const userInput = document.getElementById('user-input');
+
+  function toggleChat() {
+    chatbox.style.display = chatbox.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  function sendMessage() {
+    const messageText = userInput.value.trim();
+    if (messageText === '') return;
+
+    // Show user message
+    const userMsg = document.createElement('div');
+    userMsg.classList.add('message', 'user');
+    userMsg.textContent = messageText;
+    chatBody.appendChild(userMsg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    // Open WhatsApp with message
+    const phoneNumber = "919985827632"; // Owner's WhatsApp
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
+    window.open(whatsappURL, '_blank');
+
+    userInput.value = '';
+  }
+</script>
+
+<script src="static/assets/script.js"></script>
+</body>
+</html>
